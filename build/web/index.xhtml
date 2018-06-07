@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"></link>
+        <link href="resources/css/styleloguin.css" rel="stylesheet" type="text/css"/>
+   
+        
+    </h:head>
+    
+    <h:body>
+
+        <div class=" login"> 
+            <h:form >
+            <div  class="row main " align="center" >               
+                
+                <div class="container" >
+
+                    <div class="col-lg-3" ></div>
+                    <div  class="col-lg-3  ">
+                        <br/> 
+                        
+                        
+                        <b:inputText styleClass="text-primary" placeholder="Usuario"  value="#{logueoBean.staff.usuario}" />
+                        
+                        <b:inputSecret styleClass="texto" placeholder="Pasword"  value="#{logueoBean.staff.contrasena }"/>
+                        <h:commandButton class="btn-primary" value="Iniciar" action ="#{logueoBean.loguear()}" /><br/>
+                      
+                    </div>
+
+                    <div class="col-lg-3">
+                        <img src="resources/img/logo.jpg" class="img-responsive" width="300" height="300" alt="logo"/>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </h:form>
+</div>
+<div class="modal-dialog">
+            <div class="loginmodal-container">
+            </div>
+        </div>
+
+    </h:body>
+</html>
+

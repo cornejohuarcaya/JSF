@@ -1,0 +1,204 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <link href="../resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <f:event type="preRenderView" listener="#{trabajoBean.listprod()}"/>
+            <f:event type="preRenderView" listener="#{trabajoBean.lstcliente()}"/>
+            <f:event type="preRenderView" listener="#{unidadMedidaBean.list()}"/>
+            <f:event type="preRenderView" listener="#{tamanoBean.list()}"/>
+            <h:form id="vent">
+
+
+
+                <h:panelGrid   columns="9" class="">
+                    <div id="divcliente">
+                        <b:inputText label="Cliente" value="#{trabajoBean.trabajo.cliente.razonsocial}" readonly="true"/> &nbsp;         
+                        <b:inputText label="Direccion" value="#{trabajoBean.trabajo.cliente.direccion}" readonly="true"/>  &nbsp;        
+                        <b:inputText label="RUC" value="#{trabajoBean.trabajo.cliente.ruc}" readonly="true"/> &nbsp;
+                        <b:inputText label="DNI" value="#{trabajoBean.trabajo.cliente.dni}" readonly="true"/>  &nbsp;
+                    </div>
+                    <button class="btn-primary btn-xs" data-target="#amodalcliente" data-toggle="modal">Seleccionar</button>                    
+                </h:panelGrid>
+
+
+                <div class="panel panel-default">       
+                    <div class="panel-body">
+
+                        <div id="datoss" class="panel-body" style="border: #011826; ">
+                            <div class="row">
+                                <div class="col-xs-2">
+
+                                    <b:selectOneMenu value="#{trabajoBean.detalle.tamano}" styleClass="menu" >
+                                        <f:selectItem itemLabel="-- Tamaño --" itemValue=""/>
+                                        <f:selectItems value="#{tamanoBean.lstTamano}"  var="tama" itemLabel="#{tama.tamano}" itemValue="#{tama}"/>
+                                    </b:selectOneMenu> 
+                                </div>  
+                                <div class="col-xs-2">
+                                    <b:selectOneMenu value="#{trabajoBean.detalle.unidad}" styleClass="menu" >
+                                        <f:selectItem itemLabel="--U. Med.--" itemValue=""/>
+                                        <f:selectItems value="#{unidadMedidaBean.lstUnidadmed}"  var="unidadd" itemLabel="#{unidadd.nombre}" itemValue="#{unidadd}"/>
+                                    </b:selectOneMenu> 
+                                </div>
+                                <div class="col-xs-6">
+                                    <b:inputText placeholder ="Producto" value="#{trabajoBean.detalle.producto.nombre}" readonly="true" />                                     
+                                </div>
+                                <div class="col-xs-2">   
+
+
+                                    <b:commandButton ajax="true"  value="Selec. Produc." oncomplete="$('.modalPseudoClass').modal();return false;"/>                        
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-1">
+                                    <b:inputText placeholder ="Cantidad" value="#{trabajoBean.detalle.cantidad}"/> 
+                                </div>
+                                <div class="col-xs-7">
+                                    <b:inputText placeholder="Descripcion" value="#{trabajoBean.detalle.descripcion}"/>
+                                </div>
+                                <div class="col-xs-2">
+                                    <b:inputText placeholder="Precio" value="#{trabajoBean.detalle.precio}"/> 
+                                </div>
+                                <div class="col-xs-2">
+                                    <b:commandButton class="btn-primary" actionListener="#{trabajoBean.agregar_a_lista()}" value="Agregar" update=":vent data"></b:commandButton>
+                                </div>
+                            </div>
+                            <br/>                 
+
+                            <b:dataTable id="data" class="table" value="#{trabajoBean.lstdetalle}" var="detalle" paginated="false" searching="false" select='single'>
+
+                                <b:dataTableColumn label="Tamaño">
+                                    <p:outputLabel value="#{detalle.tamano.tamano}"/>
+                                </b:dataTableColumn>
+
+                                <b:dataTableColumn label="Undi Med" >
+                                    <p:outputLabel value="#{detalle.unidad.nombre}"/>
+                                </b:dataTableColumn>
+                                <b:dataTableColumn label="Cant" >
+                                    <p:outputLabel value="#{detalle.cantidad}"/>
+                                </b:dataTableColumn>
+
+                                <b:dataTableColumn label="Producto">
+                                    <p:outputLabel value="#{detalle.producto.nombre}"/>
+                                </b:dataTableColumn> 
+                                <b:dataTableColumn label="Detalle">
+                                    <p:outputLabel value="#{detalle.descripcion}"/>
+                                </b:dataTableColumn>
+                                <b:dataTableColumn label="P. Unit.">
+                                    <p:outputLabel value="#{detalle.precio}"/>
+                                </b:dataTableColumn>
+                                <b:dataTableColumn label="Valor">
+                                    <p:outputLabel value="#{detalle.precio * detalle.cantidad}"/>
+                                </b:dataTableColumn>
+                                <b:dataTableColumn label="">
+                                    <b:commandButton  class="btn-primary btn-xs" value="Modificar" actionListener="#{trabajoBean.modificar(detalle)}" update=":vent data"/>
+
+                                </b:dataTableColumn><b:dataTableColumn label="">
+                                    <b:commandButton  class="btn-danger btn-xs" value="Eliminar" actionListener="#{trabajoBean.eliminar(detalle)}" update=":vent data"/>
+                                </b:dataTableColumn>
+                            </b:dataTable>
+
+                            <div class="row" align="center" >
+                                <div class="col-xs-3" style="" ></div>
+                                <div class="col-xs-6">
+                                    <h:panelGrid columns="3">
+                                    <b:inputText class="text-primary" label="Sub Total" readonly="true" value="#{trabajoBean.trabajo.total}"/>
+                                    <b:inputText  class="text-primary" label="A cuenta" value="#{trabajoBean.abono.monto }" >
+                                        <f:ajax listener= "#{trabajoBean.calcular()}" render="result" />
+                                    </b:inputText>
+                                    <b:inputText id="result" class="text-primary" label="Saldo" readonly="true" placeholder="" value="#{trabajoBean.trabajo.saldo}"/>
+                                    </h:panelGrid>
+                                </div>
+                                <div class="col-xs-3">
+                                    <b:commandButton class="btn-success btn-lg" actionListener="#{trabajoBean.registrar()}" value="Registrar" update="@form"></b:commandButton>
+                                </div>
+                                                               
+                                <b:messages escape="false"/>
+
+
+                            </div>
+
+                        </div></div>
+                </div>
+
+                <b:modal id="amodal" title="Seleccionar Producto" styleClass="modalPseudoClass">
+                    <b:dataTable id="dataprod" value="#{trabajoBean.lstProducto }" var="produc">
+                        <b:dataTableColumn label="id" >
+                            <p:outputLabel value="#{produc.idproducto}"/>
+                        </b:dataTableColumn><b:dataTableColumn label="Producto" >
+                            <p:outputLabel value="#{produc.nombre}"/>
+                        </b:dataTableColumn><b:dataTableColumn label="Detalle">
+                            <p:outputLabel value="#{produc.detalle}"/>
+                        </b:dataTableColumn>
+
+                        <b:dataTableColumn label="">
+                            <b:commandButton  value="Seleccionar " actionListener="#{trabajoBean.selectProduct(produc)}">
+                                <a dismiss="modal" onclick="return false;" ></a>
+                            </b:commandButton>  
+                        </b:dataTableColumn>
+
+
+                    </b:dataTable>
+
+                    <f:facet name="footer">                      
+                        <b:button value="Cancelar" dismiss="modal" onclick="return false;" />
+                    </f:facet>      
+                </b:modal> 
+
+
+
+                <div class="modal fade" tabindex="-1" id="amodalcliente" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                    <div class="modal-dialog">
+                        <div class="modal-content"> 
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hiddden="true">&times;</button>
+                                <h4>Seleccionar Cliente</h4>
+                            </div>
+                            <div class="modal-body">
+                                <b:dataTable id="datacli" value="#{trabajoBean.lstCliente }" var="cliente">
+                                    <b:dataTableColumn label="ruc" >
+                                        <p:outputLabel value="#{cliente.ruc}"/>
+                                    </b:dataTableColumn><b:dataTableColumn label="Razon Social">
+                                        <p:outputLabel value="#{cliente.razonsocial}"/>
+                                    </b:dataTableColumn>
+                                    <b:dataTableColumn label="Direccion">
+                                        <p:outputLabel value="#{cliente.direccion}"/>
+                                    </b:dataTableColumn>
+
+                                    <b:dataTableColumn label="">
+
+                                        <b:commandButton value="Seleccionar " actionListener ="#{trabajoBean.selecClient(cliente)}" >
+                                            <a dismiss="modal" onclick="return false"  ></a>
+                                        </b:commandButton>
+                                    </b:dataTableColumn>
+
+                                </b:dataTable>
+
+                            </div>
+                            <div class="modal-footer">                      
+                                <b:button value="Cancelar" dismiss="modal" onclick="return false;"/>                                
+                            </div>
+                        </div>
+                    </div> 
+                </div> 
+
+            </h:form>
+
+
+        </div>
+        <script src="../resources/js/jquery-latest.js" type="text/javascript"></script>
+        <script src="../resources/js/jquery.min.js" type="text/javascript"></script>
+        <script src="../resources/js/bootstrap.min.js"></script>
+        <script src="../resources/js/jquery-2.1.1.min.js" type="text/javascript"></script>       
+    </h:body>
+</html>
+

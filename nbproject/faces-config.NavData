@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="webresources/producto.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="webresources/manTrabajo.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="index.xhtml" x="45" y="95" zoom="true"/>
+        <Node id="tmpUsuario.xhtml" x="422" y="264" zoom="true"/>
+        <Node id="PruebaAng.html" x="791" y="270" zoom="true"/>
+        <Node id="webresources/cliente.xhtml" x="398" y="420" zoom="true"/>
+        <Node id="webresources/nuevo.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="Menu.xhtml" x="13" y="248" zoom="true"/>
+        <Node id="tmpProducto.xhtml" x="426" y="31" zoom="true"/>
+        <Node id="webresources/tamano.xhtml" x="386" y="321" zoom="true"/>
+        <Node id="tmpmantrabajo.xhtml" x="177" y="333" zoom="true"/>
+        <Node id="webresources/recepcionTrabajo.xhtml" x="37" y="362" zoom="true"/>
+        <Node id="webresources/unidadMedida.xhtml" x="394" y="496" zoom="true"/>
+        <Node id="webresources/usuario2.xhtml" x="403" y="92" zoom="true"/>
+        <Node id="tmpRecepcion.xhtml" x="427" y="-39" zoom="true"/>
+        <Node id="templates/Plantilla.xhtml" x="79" y="-2" zoom="true"/>
+        <Node id="tmpCliente.xhtml" x="449" y="379" zoom="true"/>
+        <Node id="index_1.xhtml" x="190" y="249" zoom="true"/>
+        <Node id="tmpUnidad Medida.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="tmpTamano.xhtml" x="426" y="211" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

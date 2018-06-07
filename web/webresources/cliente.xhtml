@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui"
+      
+      >
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <div class="container" align="center">
+            <f:event type="preRenderView" listener="#{clienteBean.list()}"/>
+            <p:growl id="msj" autoUpdate="true"/>
+
+            <h:form>
+                <div  align="center" class="container   panel-body "  >
+
+                    <h:panelGrid  columns="4" class="">
+
+                        <b:inputText label="Razon Social" value="#{clienteBean.cliente.razonsocial }"/>          
+                        <b:inputText label="Ruc" value="#{clienteBean.cliente.ruc}"/>          
+                        <b:inputText label="DNI" value="#{clienteBean.cliente.dni}"/>          
+                        <b:inputText label="Representante" value="#{clienteBean.cliente.representante}"/>          
+                        <b:inputText label="Direccion" value="#{clienteBean.cliente.direccion}"/>          
+                        <b:inputText label="Telefono" value="#{clienteBean.cliente.telefono}"/>  
+                        <b:inputText label="Correo" value="#{clienteBean.cliente.correo}"/>          
+
+                        <b:commandButton class="btn-primary" value="Register new staff" actionListener="#{clienteBean.register()}" />     
+                    </h:panelGrid>
+                </div>
+            </h:form>
+
+            <h:form id="frm" class=" form-control-static ">
+
+                <div class="">
+                    <b:dataTable id="data" value="#{clienteBean.lstCliente }" var="cliente">
+                      
+                        <b:dataTableColumn label="Razon Social" >
+                            <p:outputLabel value="#{cliente.razonsocial}"/>
+                        </b:dataTableColumn>
+                        <b:dataTableColumn label="ruc" >
+                            <p:outputLabel value="#{cliente.ruc}"/>
+                        </b:dataTableColumn><b:dataTableColumn label="DNI">
+                            <p:outputLabel value="#{cliente.dni}"/>
+                        </b:dataTableColumn><b:dataTableColumn label="Representante">
+                            <p:outputLabel value="#{cliente.representante}"/>
+                        </b:dataTableColumn>
+                        <b:dataTableColumn label="Direccion">
+                            <p:outputLabel value="#{cliente.direccion}"/>
+                        </b:dataTableColumn>
+                        <b:dataTableColumn label="Telefono">
+                            <p:outputLabel value="#{cliente.telefono}"/>
+                        </b:dataTableColumn>
+                        <b:dataTableColumn label="Correo">
+                            <p:outputLabel value="#{cliente.correo}"/>
+                        </b:dataTableColumn>
+
+                        
+                        
+                        
+                        <b:dataTableColumn label="Modificar">
+                            <b:commandButton visible="xs " ajax="true" actionListener="#{clienteBean.searchID(cliente)}" value="" />                        
+                            <b:commandButton class="btn-sm btn-success" ajax="true" actionListener="#{clienteBean.searchID(cliente)}" value="Modify" oncomplete="$('.modalPseudoClass').modal();return false;"/>                        
+
+                        </b:dataTableColumn><b:dataTableColumn label="Eliminar">
+                            <b:commandButton  class= " btn-sm btn-danger" value="Eliminar" actionListener="#{clienteBean.delete(cliente)}" update=":frm data"/>
+                        </b:dataTableColumn>
+
+
+                    </b:dataTable>
+                </div>           
+                <b:modal id="amodal" title="Actualizar Cliente" styleClass="modalPseudoClass">
+                    <h:panelGrid columns="4" cellpadding="5" >
+                        <p:outputLabel value="RUC"/>        
+                        <h:inputText value="#{clienteBean.cliente.ruc}"/>      
+                        <p:outputLabel value="Razon Social"/>        
+                        <h:inputText value="#{clienteBean.cliente.razonsocial}"/> 
+                        <p:outputLabel value="DNI"/>        
+                        <h:inputText value="#{clienteBean.cliente.dni}"/> 
+                        <p:outputLabel value="Representante"/>        
+                        <h:inputText value="#{clienteBean.cliente.representante}"/> 
+                        <p:outputLabel value="Direccion"/>        
+                        <h:inputText value="#{clienteBean.cliente.direccion}"/> 
+                        <p:outputLabel value="Telefono"/>        
+                        <h:inputText value="#{clienteBean.cliente.telefono}"/> 
+                        <p:outputLabel value="Correo"/>        
+                        <h:inputText value="#{clienteBean.cliente.correo}"/>
+
+                               
+
+                    </h:panelGrid>   
+                    <f:facet name="footer">                      
+                        <b:button value="Cancelar" dismiss="modal" onclick="return false;"/>
+                        <b:commandButton  value="Modificar " action="#{clienteBean.update()}">
+
+                            <a dismiss="modal" onclick="return true;" ></a>
+                        </b:commandButton>      
+
+                    </f:facet>      
+                </b:modal> 
+
+
+
+            </h:form>
+
+
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+    </h:body>
+</html>
+

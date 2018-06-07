@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+
+        <div class="container" align="center">
+            <f:event type="preRenderView" listener="#{unidadMedidaBean.list()}"/>
+            <p:growl id="msj" autoUpdate="true"/>
+
+            <h:form>
+                <div  align="center" class="container   panel-body "  >
+
+                    <h:panelGrid  columns="5" class="">
+
+                        <b:inputText label="Unidad de Medida" value="#{unidadMedidaBean.unidadmedida.nombre}"/>          
+                        <b:inputText label="Unidad en Numero" value="#{unidadMedidaBean.unidadmedida.unidad}"/>          
+
+                        <a/>
+                        <b:commandButton class="btn-primary" value="Registrat" actionListener="#{unidadMedidaBean.register()}" />     
+                    </h:panelGrid>
+                </div>
+            </h:form>
+
+            <h:form id="frm" class=" form-control-static ">
+
+                <div class="panel panel-body">
+
+                    <b:dataTable id="data" value="#{unidadMedidaBean.lstUnidadmed }" var="unidad">
+                        <b:dataTableColumn label="id" >
+                            <p:outputLabel value="#{unidad.idunidad}"/>
+                        </b:dataTableColumn><b:dataTableColumn label="Producto" >
+                            <p:outputLabel value="#{unidad.nombre}"/>
+                        </b:dataTableColumn><b:dataTableColumn label="Detalle">
+                            <p:outputLabel value="#{unidad.unidad}"/>
+                        </b:dataTableColumn>
+
+                        <b:dataTableColumn label="Modificar">
+                            <b:commandButton visible="xs " ajax="true" actionListener="#{unidadMedidaBean.searchID(unidad)}" value="" />                        
+                            <b:commandButton ajax="true" actionListener="#{unidadMedidaBean.searchID(unidad)}" value="Modify" oncomplete="$('.modalPseudoClass').modal();return false;"/>                        
+
+                        </b:dataTableColumn><b:dataTableColumn label="Eliminar">
+                            <b:commandButton  class="label-primary" value="Eliminar" actionListener="#{unidadMedidaBean.delete(unidad)}" update=":frm data"/>
+                        </b:dataTableColumn>
+
+
+                    </b:dataTable>
+                </div>           
+                <b:modal id="amodal" title="Modificar Unid. Medida" styleClass="modalPseudoClass">
+                    <h:panelGrid columns="4" cellpadding="5" >
+                        <p:outputLabel value="Uni. Medida"/>        
+                        <h:inputText value="#{unidadMedidaBean.unidadmedida.nombre}"/>      
+                        <p:outputLabel value="Unidad"/>        
+                        <h:inputText value="#{unidadMedidaBean.unidadmedida.unidad}"/> 
+
+
+
+                    </h:panelGrid>   
+                    <f:facet name="footer">                      
+                        <b:button value="Cancelar" dismiss="modal" onclick="return false;"/>
+                        <b:commandButton  value="Modificar " action="#{unidadMedidaBean.update()}">
+
+                            <a dismiss="modal" onclick="return true;" ></a>
+                        </b:commandButton>      
+
+                    </f:facet>      
+                </b:modal> 
+
+
+
+            </h:form>
+
+
+        </div>
+    </h:body>
+</html>
+

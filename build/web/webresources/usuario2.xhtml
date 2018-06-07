@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui"
+       
+       >
+    <h:head>
+        <link href="../resources/css/main.css" rel="stylesheet" type="text/css"/>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+      
+ 
+         <div class="container" align="center">
+             <f:event type="preRenderView" listener="#{usuBean.list()}"/>
+        <p:growl id="msj" autoUpdate="true"/>
+        
+        <h:form>
+            <div  align="center" class="container   panel-body "  >
+                
+                <h:panelGrid  columns="5" class="">
+                  
+                    <b:inputText label="Usuario" value="#{usuBean.staff.usuario}"/>          
+                    <b:inputText label="Contraseña" value="#{usuBean.staff.contrasena}"/>          
+           
+                    <b:selectOneMenu label="estado personal" value="#{usuBean.staff.activo}" styleClass="menu "  >
+                                    <f:selectItem itemLabel="Activo" itemValue="1"/>
+                                    <f:selectItem itemLabel="Retirado" itemValue="0"/>
+                                    </b:selectOneMenu>          
+                             
+                             
+                             <a/>
+                                 <b:commandButton class="btn-primary" value="Register new staff" actionListener="#{usuBean.register()}" />     
+                            </h:panelGrid>
+            </div>
+        </h:form>
+
+        <h:form id="frm" class=" form-control-static ">
+
+<div class="">
+    <b:dataTable id="data" value="#{usuBean.lstStaff }" var="staff">
+        <b:dataTableColumn label="id" >
+            <p:outputLabel value="#{staff.idusuario}"/>
+                </b:dataTableColumn><b:dataTableColumn label="usuario" >
+                    <p:outputLabel value="#{staff.usuario}"/>
+                </b:dataTableColumn><b:dataTableColumn label="contrasena">
+                    <p:outputLabel value="#{staff.contrasena}"/>
+                </b:dataTableColumn><b:dataTableColumn label="activo">
+                    <p:outputLabel value="#{staff.activo}"/>
+                
+                </b:dataTableColumn>
+        
+         <b:dataTableColumn label="Modificar">
+                    <b:commandButton visible="xs " ajax="true" actionListener="#{usuBean.searchID(staff)}" value="" />                        
+                    <b:commandButton ajax="true" actionListener="#{usuBean.searchID(staff)}" value="Modify" oncomplete="$('.modalPseudoClass').modal();return false;"/>                        
+                    
+                </b:dataTableColumn><b:dataTableColumn label="Eliminar">
+                    <b:commandButton  class="label-primary" value="Eliminar" actionListener="#{usuBean.delete(staff)}" update=":frm data"/>
+                </b:dataTableColumn>
+        
+       
+            </b:dataTable>
+</div>           
+            <b:modal id="amodal" title="Modificar Provincia" styleClass="modalPseudoClass">
+                <h:panelGrid columns="4" cellpadding="5" >
+                    <p:outputLabel value="Usuario"/>        
+                    <h:inputText value="#{usuBean.staff.usuario}"/>      
+                    <p:outputLabel value="Contraseña"/>        
+                    <h:inputText value="#{usuBean.staff.contrasena}"/> 
+
+                    <p:outputLabel value="estado personal"/>         
+                    <b:selectOneMenu value="#{usuBean.staff.activo}" styleClass="menu" >
+                        <f:selectItem itemLabel="Activo" itemValue="1"/>
+                        <f:selectItem itemLabel="Retirado" itemValue="0"/>
+                    </b:selectOneMenu>         
+                                    
+                               </h:panelGrid>   
+                                  <f:facet name="footer">                      
+                       <b:button value="Cancelar" dismiss="modal" onclick="return false;"/>
+                     <b:commandButton  value="Modificar " action="#{usuBean.update()}">
+                 
+                         <a dismiss="modal" onclick="return true;" ></a>
+                      </b:commandButton>      
+                                    
+                    </f:facet>      
+        </b:modal> 
+           
+
+
+        </h:form>
+            
+       
+        </div>
+    </h:body>
+</html>
+

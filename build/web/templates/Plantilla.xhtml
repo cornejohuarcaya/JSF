@@ -1,0 +1,157 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+
+
+
+
+
+        <title>Impresiones Cornejo EIRL</title>
+
+        <link href="../resources/css/main.css" rel="stylesheet" type="text/css"/>
+        <link href="../resources/css/fonts.css" rel="stylesheet" type="text/css"/>
+        <link href="../resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <script src="../resources/js/jquery.min.js" type="text/javascript"></script>
+        <script src="../resources/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../resources/js/bootstrap.min.js" type="text/javascript"></script>   
+        <script src="../resources/js/ie10-viewport-bug-workaround.js" type="text/javascript"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+
+    </head>
+
+    <body >
+
+        <div class="container" style="padding-top: 1em; " >
+            <nav class="navbar navbar-inverse"  role="navigation"  >
+                <!-- El logotipo y el icono que despliega el menú se agrupan
+                     para mostrarlos mejor en los dispositivos móviles -->
+                <div class="navbar-header  " >
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Desplegar navegación</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <img class="btn-primary img-rounded" src="../resources/img/logo.jpg" width="50" height="50">
+                        <a href="../templates/Plantilla.xhtml" ></a>
+                    </img>
+
+                </div>
+
+                <!-- Agrupar los enlaces de navegación, los formularios y cualquier
+                     otro elemento que se pueda ocultar al minimizar la barra -->
+                <div class="collapse navbar-collapse navbar-ex1-collapse text-success">
+                    <ul class="nav navbar-nav">
+                        <li><a href="../faces/Menu.xhtml" >Inicio</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Mantenimientos <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="../faces/tmpProducto.xhtml">Producto</a></li>
+                                <li><a href="../faces/tmpTamano.xhtml">Tamano</a></li>
+                                <li><a href="../faces/tmpUnidad Medida.xhtml">U. Medida</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Acción #4</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Acción #5</a></li>
+                            </ul>
+                        </li>
+                        
+                        <li><a href="../faces/tmpCliente.xhtml">Cliente</a></li>                        
+                        <li><a href="../faces/tmpRecepcion.xhtml">Rec. Trabajo</a></li>
+                        <li><a href="../faces/tmpmantrabajo.xhtml">Rec. Trabajo</a></li>
+
+                        
+                    </ul>
+
+
+
+                    <ul class="nav navbar-nav navbar-right">
+
+
+                        
+
+                        <li><a href="#">#{logueoBean.validado.idusuario } #{ logueoBean.validado.usuario} </a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+
+
+        <div id="top" class="container">
+
+
+            <ui:insert name="content"  >
+
+                <div class="row">
+                    <div class="  col-lg-4 ">
+                        <img class="img-responsive" src="../resources/img/logo.jpg"  alt="logo"/>
+
+                    </div>
+                    <div class="col-lg-8 text-primary ">
+                        <P>
+                            Somos una empresa Familiar perteneciente al rubro de la Industria gráfica, conocedores de este rubro y nos avala 20 años de experiencia. Nuestra especialid <br/>
+                        </P>
+                        <p>
+                            <br/>
+                            Comprobantes de Pago)<br/>
+                            (Boletas, Facturas, Guia R.R.etc.)<br/>
+                            Tarjetas)<br/>
+                            Volantes)<br/>
+                            Papel Membretado)<br/>
+                            Formateria en General)<br/>
+                            Almanaques)<br/>
+                        </p>
+                    </div>
+                </div>
+                <br/>
+
+                <div class=" col-md-12">
+                    <img class="img-responsive col-md-2 " src="../resources/img/comprobantessunat.JPG" alt="comprobantessunat"/>
+
+                    <img class="img-responsive col-md-2 " src="../resources/img/imprenta1.jpg" alt="imprenta1"/>
+
+                    <img class="img-responsive col-md-2 " src="../resources/img/printy-trodat.png" alt="printy-trodat"/>
+
+                    <img class="img-responsive col-md-2 " src="../resources/img/servicios-de-imprenta.jpg" alt="serviciosimprenta"/>
+
+                    <img class="img-responsive col-md-2 " src="../resources/img/tarjetas.jpg" alt="tarjetasss"/>
+
+                    <img class="img-responsive col-md-2 " src="../resources/img/maquinaoffset.gif" alt="maquinaoffset"/>
+
+                </div>
+
+            </ui:insert>
+        </div>
+
+
+
+        <div id="bottom">
+            <ui:insert name="bottom">
+                <footer class="bottom" >
+                    <div class="container btn-primary" align="center">
+                        <p align="center">
+                            Jr. Fco. Bolognesi N° 259 - Parcona - Ica - Peru<br/>
+                            2017
+                        </p>  
+                    </div>
+                </footer>
+            </ui:insert>
+        </div>
+
+        <script src="../resources/js/bootstrap.min.js" type="text/javascript"></script>
+
+    </body>
+
+</html>

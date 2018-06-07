@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+        <h:head>
+        <title>Inicio de Sesion MDP</title>
+        <meta name="author" content="Erick"></meta>
+        <style type="text/css">
+            .form-signin {
+                margin: 0 auto;
+                max-width: 330px;
+                padding: 15px;
+                color: #ffffff;
+            }
+        </style>
+    </h:head>
+    <h:body style="padding-top: 60px; background-color: #2373B9;">
+        <b:container>
+            <h:form styleClass="form-signin" prependId="false">
+                <b:image name="log" value="resources/img/logo.jpg" width="150"  alt="logo" ></b:image>
+                
+
+                <h2 class="form-signin-heading ">Inicio de Sesión Imp. Cornejo E.I.R.L.</h2>
+                <b:inputText id="Usuario" placeholder="Usuario"  value="#{logueoBean.staff.usuario}" >
+                    <f:facet name="prepend">
+                        <b:icon name="user" />
+                    </f:facet>
+                </b:inputText>
+                <b:inputText id="password" placeholder="Password" type="password" value="#{logueoBean.staff.contrasena }">
+                    <f:facet name="prepend">
+                        <b:iconAwesome name="key" />
+                    </f:facet>
+                </b:inputText>
+                <b:selectBooleanCheckbox value="true" caption="remember me"/>
+                <b:commandButton look="primary btn-block" value="Sign In" icon="log-in" size="lg" action ="#{logueoBean.loguear()}"/>
+                <b:messages styleClass="msgs" redisplay="true" for="@parent" recursive="true" id="leftmessages"/>
+                
+            </h:form>
+        </b:container>
+    </h:body>
+</html>

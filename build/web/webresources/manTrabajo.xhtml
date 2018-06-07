@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        
+        <div class="container" align="center">
+            
+
+          
+                 <h:form id="frm" class=" form-control-static ">
+                    <h:panelGrid  columns="6" class="">
+                        <b:inputText label="Razon Social" value="#{manTrabajoBean.valosbuscar }"/>
+                        <b:commandButton class="btn-primary" value="Buscar" actionListener="#{manTrabajoBean.list()}" />     
+                    </h:panelGrid>
+                     
+                   <f:event type="preRenderView" listener="#{manTrabajoBean.list()}"/>
+        <p:growl id="msj" autoUpdate="true"/>
+        
+                     <b:dataTable id="data" value="#{manTrabajoBean.lstTrabajo}" var="tra" >
+                        <b:dataTableColumn label="id" >
+                            <p:outputLabel value="#{tra.cliente.razonsocial}"/>
+                        </b:dataTableColumn>
+                         <b:dataTableColumn label="Fecha" >
+                            <p:outputLabel value="#{tra.fechacontrato}"/>
+                        </b:dataTableColumn>
+                         <b:dataTableColumn label="Total" >
+                            <p:outputLabel value="#{tra.total}"/>
+                        </b:dataTableColumn><b:dataTableColumn label="Saldo">
+                            <p:outputLabel value="#{tra.saldo}"/>
+                        </b:dataTableColumn>
+
+                        <b:dataTableColumn label="Modificar">
+                            <b:commandButton visible="xs " ajax="true" actionListener="#{unidadMedidaBean.searchID(unidad)}" value="" />                        
+                            <b:commandButton ajax="true" actionListener="#{unidadMedidaBean.searchID(unidad)}" value="Modify" oncomplete="$('.modalPseudoClass').modal();return false;"/>                        
+
+                        </b:dataTableColumn>
+
+
+                    </b:dataTable>
+                   </h:form>
+                
+        
+        </div>
+    </h:body>
+</html>
+

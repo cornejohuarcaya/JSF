@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui"
+       
+       >
+    <h:head>
+        <link href="../resources/css/main.css" rel="stylesheet" type="text/css"/>
+        <title>Producto</title>
+    </h:head>
+    <h:body>
+      
+ 
+         <div class="container" align="center">
+             <f:event type="preRenderView" listener="#{productoBean.list()}"/>
+        <p:growl id="msj" autoUpdate="true"/>
+        
+        <h:form>
+            <div  align="center" class="container   panel-body "  >
+                
+                <h:panelGrid  columns="5" class="">
+                  
+                    <b:inputText label="Producto" value="#{productoBean.producto.nombre}"/>          
+                    <b:inputText label="Detalle" value="#{productoBean.producto.detalle}"/>          
+                               
+                             <a/>
+                                 <b:commandButton class="btn-primary" value="Register new staff" actionListener="#{productoBean.register()}" />     
+                            </h:panelGrid>
+            </div>
+        </h:form>
+
+        <h:form id="frm" class=" form-control-static ">
+
+<div class="">
+    <b:dataTable id="data" value="#{productoBean.lstProducto }" var="producto">
+        <b:dataTableColumn label="id" >
+            <p:outputLabel value="#{producto.idproducto}"/>
+                </b:dataTableColumn><b:dataTableColumn label="Producto" >
+                    <p:outputLabel value="#{producto.nombre}"/>
+                </b:dataTableColumn><b:dataTableColumn label="Detalle">
+                    <p:outputLabel value="#{producto.detalle}"/>
+                </b:dataTableColumn>
+        
+         <b:dataTableColumn label="Modificar">
+                    <b:commandButton visible="xs " ajax="true" actionListener="#{productoBean.searchID(producto)}" value="" />                        
+                    <b:commandButton ajax="true" actionListener="#{productoBean.searchID(producto)}" value="Modify" oncomplete="$('.modalPseudoClass').modal();return false;"/>                        
+                    
+                </b:dataTableColumn><b:dataTableColumn label="Eliminar">
+                    <b:commandButton  class="label-primary" value="Eliminar" actionListener="#{productoBean.delete(producto)}" update=":frm data"/>
+                </b:dataTableColumn>
+        
+       
+            </b:dataTable>
+</div>           
+            <b:modal id="amodal" title="Modificar Producto" styleClass="modalPseudoClass">
+                <h:panelGrid columns="4" cellpadding="5" >
+                    <p:outputLabel value="Producto"/>        
+                    <h:inputText value="#{productoBean.producto.nombre}"/>      
+                    <p:outputLabel value="Detalle"/>        
+                    <h:inputText value="#{productoBean.producto.detalle}"/> 
+
+                    
+                                    
+                               </h:panelGrid>   
+                                  <f:facet name="footer">                      
+                       <b:button value="Cancelar" dismiss="modal" onclick="return false;"/>
+                     <b:commandButton  value="Modificar " action="#{productoBean.update()}">
+                 
+                         <a dismiss="modal" onclick="return true;" ></a>
+                      </b:commandButton>      
+                                    
+                    </f:facet>      
+        </b:modal> 
+           
+
+
+        </h:form>
+            
+       
+        </div>
+    </h:body>
+</html>
+
